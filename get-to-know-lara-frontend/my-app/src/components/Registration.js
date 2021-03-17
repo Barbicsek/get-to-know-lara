@@ -14,20 +14,22 @@ import {
     const paperStyle = 
     {
       padding: "30px 20px",
-      height: 660,
+      height: 300,
       width: 500,
       margin: "70px auto",
     };
     const formStyle = 
     {
-      height: 520,
+      height: 200,
       display: "flex",
       flexFlow: "column wrap",
       justifyContent: "space-between",
     };
  
     const headerStyle = { margin: 0 };
-    const button = { backgroundColor: "#859DF4" };
+    const button = { 
+        marginTop: 30,
+        backgroundColor: "#859DF4" };
  
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
