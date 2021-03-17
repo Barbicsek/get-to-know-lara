@@ -36,6 +36,9 @@ export default function MenuAppBar() {
       <AppBar className={classes.navbarStyle} position="static">
         <Toolbar>
           <div>
+            <Button component={Link} to="/" color="inherit">
+              Home
+            </Button>
             <Button component={Link} to="/login" color="inherit">
               Login
             </Button>
