@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    background: '#F6F6F6',
     flexGrow: 1,
     marginBottom: '5px',
   },
@@ -39,7 +40,7 @@ export default function MenuAppBar() {
               Login
             </Button>
             <Button component={Link} to="/registration" color="inherit">
-              Register
+              Registration
             </Button>
           </div>
         </Toolbar>
