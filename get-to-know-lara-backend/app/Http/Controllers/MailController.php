@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mail;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class MailController extends Controller
@@ -12,7 +12,8 @@ class MailController extends Controller
     {
         try {
             $userId = auth()->user()->id;
-            $mail = Mail::where('id_user_to', $userId)->where('is_read','=',0)->orderBy('sent', 'desc');
+            $mail = DB::table("mail")->where('id_user_to', $userId)->where('is_read','=',0)->orderBy('sent', 'desc')->get();
+//            $mail = Mail::where('id_user_to', $userId)->where('is_read','=',0)->orderBy('sent', 'desc')->get();
             return response()->json([
                 'mail' => $mail,
                 'id' => $userId,
