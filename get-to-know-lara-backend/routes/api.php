@@ -34,6 +34,11 @@ Route::post('/login', function(Request $request){
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
 
+    Route::get('/mail/inbox', function(){
+        $mailController = new \App\Http\Controllers\MailController();
+        return $mailController->inboxEmails();
+    });
+
 });
 
 
