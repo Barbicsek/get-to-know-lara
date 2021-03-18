@@ -32,25 +32,25 @@ import {
         backgroundColor: "#859DF4" };
  
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [userEmail, setEmail] = useState("");
+    const [userPassword, setPassword] = useState("");
     const history = useHistory();
  
-    async function signUp(){
-        let item = {name, password, email}
-        let result = await fetch("http://localhost:8000/api/registration", {
-            method: 'POST',
-            body:JSON.stringify(item),
-            headers: {
-                "Content-Type" : 'application/json',
-                "Accept" : 'application/json'
-            }
-        })
-
-        result = await result.json()
-        localStorage.setItem("user-info", JSON.stringify(result));
-        history.push("/");
-    }
+     async function signUp(){
+         let item = {name, userPassword, userEmail}
+         console.log(item)
+         let result = await fetch("http://localhost/get-to-know-lara/get-to-know-lara-backend/public/api/registration", {
+             method: 'POST',
+             body:JSON.stringify(item),
+             headers: {
+                 "Content-Type" : 'application/json',
+                 "Accept" : 'application/json',
+                
+     
+             }
+         })
+         history.push("/");
+     }
  
  
     return (
@@ -64,7 +64,8 @@ import {
               </Typography>
             </Grid>
  
-            <form style={formStyle}>
+            <form style={formStyle} >
+              
               <TextField
                 onChange={(e) => setName(e.target.value)}
                 value={name}
@@ -75,7 +76,7 @@ import {
               />
               <TextField  
                 onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                value={userEmail}
                 fullWidth
                 label="Email"
                 type="text"
@@ -83,7 +84,7 @@ import {
               />
               <TextField
                 onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                value={userPassword}
                 fullWidth
                 label="Password"
                 type="password"
