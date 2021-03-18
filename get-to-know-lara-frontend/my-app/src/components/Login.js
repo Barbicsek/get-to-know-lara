@@ -34,17 +34,30 @@ function Login() {
 
   async function logIn(){
 
-    let item = {email, password};
-    let result = await fetch('http://localhost:8000/api/login', {
+    let item = {"email": email, "password":password};
+    console.log(item)
+    let result;
+    fetch('http://localhost/get-to-know-lara/get-to-know-lara-backend/public/api/login', {
         method : 'POST',
         headers : {
-            'Content-Type' : 'application/json',
-            'Accept' : 'application/json'
+             'Content-Type' : 'application/json',
+             'Accept' : 'application/json',
+          
         },
+    
         body: JSON.stringify(item)
-    });
+    }) 
+    .then((response) => {
+        return result = response.json();
+        
+})
+    .then((data) => {
+      sessionStorage.setItem("token", data.token); 
+      sessionStorage.setItem("user", JSON.stringify(data.user));
+    })
 
     history.push("/");
+
 
   }
 
