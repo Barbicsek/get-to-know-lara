@@ -39,6 +39,11 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
         return $mailController->inboxEmails();
     });
 
+    Route::get('/mail/sent', function(){
+        $mailController = new \App\Http\Controllers\MailController();
+        return $mailController->sentEmails();
+    });
+
 });
 
 
