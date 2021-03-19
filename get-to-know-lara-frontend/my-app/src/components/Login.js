@@ -35,7 +35,7 @@ function Login() {
   async function logIn(){
 
     let item = {"email": email, "password":password};
-    console.log(item)
+
     let result;
     fetch('http://localhost/get-to-know-lara/get-to-know-lara-backend/public/api/login', {
         method : 'POST',
@@ -56,7 +56,7 @@ function Login() {
       sessionStorage.setItem("user", JSON.stringify(data.user));
     })
 
-    history.push("/");
+    history.push("/mail/inbox");
 
 
   }
