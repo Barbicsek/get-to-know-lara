@@ -23,4 +23,20 @@ class MailController extends Controller
             return response()->json(['message' => 'something went wrong'], 400);
         }
     }
+
+    function sentEmails()
+    {
+        try {
+            $userId = auth()->user()->id;
+            $mail = DB::table("mail")->where('id_user_from', $userId)->where('is_read','=',0)->orderBy('sent', 'desc')->get();
+//            $mail = Mail::where('id_user_to', $userId)->where('is_read','=',0)->orderBy('sent', 'desc')->get();
+            return response()->json([
+                'mail' => $mail,
+                'id' => $userId,
+            ], 200);
+        }catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['message' => 'something went wrong'], 400);
+        }
+    }
 }
