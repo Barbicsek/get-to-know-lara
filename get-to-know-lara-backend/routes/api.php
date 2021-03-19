@@ -44,6 +44,17 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
         return $mailController->sentEmails();
     });
 
+    Route::get('/mail/compose', function(){
+        $mailController = new \App\Http\Controllers\MailController();
+        return $mailController->getMailAddresses();
+    });
+
+    Route::post('/mail/compose', function(Request $request){
+        $mailController = new \App\Http\Controllers\MailController();
+        return $mailController->saveNewEmail($request);
+    });
+
+
 });
 
 
