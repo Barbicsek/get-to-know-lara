@@ -12,7 +12,7 @@ function Login() {
 
   const paperStyle = {
     padding: "30px 20px",
-    height: 340,
+    height: 380,
     width: 500,
     margin: "70px auto",
   };
