@@ -32,7 +32,7 @@ function Inbox() {
     const classes = useStyles();
 
     const [mails, setMails] = useState({})
-    Object.keys(mails).map(key => console.log(mails[key].message))
+
 
     let result;
     const fetchUser = async () => {
@@ -51,13 +51,18 @@ function Inbox() {
     })
         .then((data) => {
             setMails(data['mail'])
+            localStorage.setItem("mail",JSON.stringify(data['mail']))
         })
 
     }
 
     useEffect(() => {
-        fetchUser()
-    }, [])
+        fetchUser();
+        if (localStorage.getItem("mail")){
+          setMails(JSON.parse(localStorage.getItem("mail")))
+
+      }
+    }, [setMails])
 
 
   return (
