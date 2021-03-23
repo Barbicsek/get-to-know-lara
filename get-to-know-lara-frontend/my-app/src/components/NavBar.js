@@ -11,7 +11,7 @@ export default function MenuAppBar() {
 
   function logOut() {
     sessionStorage.clear();
-    history.push('/')
+    window.location.href = '/';
 
   }
 

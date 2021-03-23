@@ -32,7 +32,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const history = useHistory();
 
-  async function logIn(){
+  function logIn(){
 
     let item = {"email": email, "password":password};
 
@@ -56,7 +56,11 @@ function Login() {
       sessionStorage.setItem("user", JSON.stringify(data.user));
     })
 
-    history.push("/mail/inbox");
+    .then(() => {
+      window.location.href = "/mail/inbox";
+    })
+
+    
 
 
   }
