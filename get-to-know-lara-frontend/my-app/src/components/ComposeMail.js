@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useHistory} from 'react-router-dom';
-import {Form, select, Col} from 'react-bootstrap';
-import {Button} from "@material-ui/core";;
+
 
 
 function ComposeMail() {
@@ -59,41 +58,68 @@ function ComposeMail() {
 
     return (
         <div>
-            <Form>
-                <Form.Row>
-
-                    <Form.Group as={Col} controlId="formGridState">
-                        <Form.Label>Email to: </Form.Label>
+            <div className="modal-body">
+                <form className="form" role="form" autoComplete="off">
+                    <div className="form-row py-2">
+                        <label htmlFor="sendTo" className="col-sm-2 mb-0">
+                            Email To
+                        </label>
 
                         <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={(e) => { setUserId(e.target.value) }}>
-                            <option selected>Open this select menu</option>
-                            {Object.keys(mails).map(key => (
-                                <option value={mails[key].id}>{mails[key].email}</option>
+                                    <option selected>Select email...</option>
+                                    {Object.keys(mails).map(key => (
+                                        <option value={mails[key].id}>{mails[key].email}</option>
 
-                            ))}
+                                    ))}
                         </select><br/>
+                    </div>
 
-                    </Form.Group>
+                    <div className="form-row py-2">
+                        <label htmlFor="subject" className="col-sm-2 mb-0">
+                            Subject
+                        </label>
+                        <div className="col">
+                            <input
+                            onChange={(e) => setSubject(e.target.value)} value={subject}
+                            type="text"
+                            name="subject"
+                            id="subject"
+                            className="form-control"
+                            required=""
+                            />
+                        </div>
+                    </div>
 
+                    <div className="form-row py-2">
+                        <label htmlFor="message2" className="col-sm-2 mb-0">
+                            Message
+                        </label>
+                        <div className="col">
+                            <textarea
+                            onChange={(e) => setMessage(e.target.value)} value={message}
+                            rows="6"
+                            name="message2"
+                            id="message2"
+                            className="form-control"
+                            required=""
+                            />
+                        </div>
+                    </div>
+                    <div className="form-row py-2">
+                    </div>
+                </form>
 
-                    <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Label>Subject</Form.Label>
-                        <Form.Control type="email" placeholder="Enter subject" onChange={(e) => setSubject(e.target.value)} value={subject}/>
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPassword">
-                        <Form.Label>Message</Form.Label>
-                        <Form.Control type="email" placeholder="Message" onChange={(e) => setMessage(e.target.value)} value={message} />
-                    </Form.Group>
-
-                </Form.Row>
-
-            </Form>
-            <Button onClick={sendEmail} type="submit" variant="contained">
-                Send
-            </Button>
-
-
+                <div className="col py-1">
+                    <button
+                      onClick={sendEmail}
+                      type="submit"
+                      className="btn btn-secondary float-right ml-1"
+                    >
+                      Send Message
+                    </button>
+                </div>
+            </div>
+  
         </div>
     );
 }
