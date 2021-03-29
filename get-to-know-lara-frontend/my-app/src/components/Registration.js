@@ -14,7 +14,7 @@ import {
     const paperStyle = 
     {
       padding: "30px 20px",
-      height: 300,
+      height: 350,
       width: 500,
       margin: "70px auto",
     };
@@ -38,7 +38,7 @@ import {
  
      async function signUp(){
          let item = {name, userPassword, userEmail}
-         console.log(item)
+  
          let result = await fetch("http://localhost/get-to-know-lara/get-to-know-lara-backend/public/api/registration", {
              method: 'POST',
              body:JSON.stringify(item),

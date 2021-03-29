@@ -12,7 +12,7 @@ function Login() {
 
   const paperStyle = {
     padding: "30px 20px",
-    height: 340,
+    height: 380,
     width: 500,
     margin: "70px auto",
   };
@@ -32,10 +32,10 @@ function Login() {
   const [password, setPassword] = useState("");
   const history = useHistory();
 
-  async function logIn(){
+  function logIn(){
 
     let item = {"email": email, "password":password};
-    console.log(item)
+
     let result;
     fetch('http://localhost/get-to-know-lara/get-to-know-lara-backend/public/api/login', {
         method : 'POST',
@@ -56,7 +56,11 @@ function Login() {
       sessionStorage.setItem("user", JSON.stringify(data.user));
     })
 
-    history.push("/");
+    .then(() => {
+      window.location.href = "/mail/inbox";
+    })
+
+    
 
 
   }
