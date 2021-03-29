@@ -72,15 +72,15 @@ function Inbox() {
      <Table className={classes.table} aria-label="simple table">
        <TableHead>
          <TableRow>
-           <TableCell>subject</TableCell>
-           <TableCell align="right">Message</TableCell>
+           <TableCell>From</TableCell>
+           <TableCell align="right">Subject</TableCell>
            <TableCell align="right">Sent</TableCell>
          </TableRow>
        </TableHead>
        <TableBody>
-         {Object.keys(mails).length == 0 ?
+         { Object.keys(mails).length == 0 ?
           <>
-         There no Email 
+         Empty inbox
          </>
          :
         
@@ -88,10 +88,20 @@ function Inbox() {
          
            <TableRow key={mails[key].subject}>
              <TableCell component="th" scope="row">
-               {mails[key].subject}
+               {mails[key].name}
              </TableCell>
-             <TableCell align="right">{mails[key].message}</TableCell>
+             <TableCell align="right">{mails[key].subject}</TableCell>
              <TableCell align="right">{mails[key].sent}</TableCell>
+             <TableCell align="right">
+             <button
+                type="button"
+                className="btn btn-outline-secondary btn-sm ml-2 d-none d-md-inline"
+              
+              >
+                Open
+              </button>
+             </TableCell>
+
            </TableRow>
          ))}
        </TableBody>

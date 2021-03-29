@@ -67,8 +67,8 @@ function Inbox() {
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>subject</TableCell>
-                        <TableCell align="right">Message</TableCell>
+                        <TableCell>Email To</TableCell>
+                        <TableCell align="right">Subject</TableCell>
                         <TableCell align="right">Sent</TableCell>
                     </TableRow>
                 </TableHead>
@@ -77,9 +77,9 @@ function Inbox() {
 
                         <TableRow key={mails[key].subject}>
                             <TableCell component="th" scope="row">
-                                {mails[key].subject}
+                                {mails[key].name}
                             </TableCell>
-                            <TableCell align="right">{mails[key].message}</TableCell>
+                            <TableCell align="right">{mails[key].subject}</TableCell>
                             <TableCell align="right">{mails[key].sent}</TableCell>
                         </TableRow>
                     ))}
