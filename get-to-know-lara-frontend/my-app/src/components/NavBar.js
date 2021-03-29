@@ -25,12 +25,15 @@ export default function MenuAppBar() {
             sessionStorage.getItem('token') ?
             <>
               <Link to="/mail/sent">Sent Mails</Link>
-              <Link to="/mail/compose">Compose mails</Link>
+              &nbsp;
+              &nbsp;
+              <Link to="/mail/compose">Compose Mails</Link>
             </>
             :
             <>
               <Link to="/login">Login  </Link>
-    
+              &nbsp;
+              &nbsp;
               <Link to="/registration">Registration  </Link>
             </>
           }
