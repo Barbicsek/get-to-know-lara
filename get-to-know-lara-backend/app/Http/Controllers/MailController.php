@@ -37,8 +37,14 @@ class MailController extends Controller
     {
         try {
             $userId = auth()->user()->id;
-            $mail = DB::table("mail")->where('id_user_from', $userId)->where('is_read','=',0)->orderBy('sent', 'desc')->get();
-//            $mail = Mail::where('id_user_to', $userId)->where('is_read','=',0)->orderBy('sent', 'desc')->get();
+            $mail = DB::table("mail")
+                ->join('users', 'mail.id_user_to', '=', 'users.id')
+                ->where('id_user_from', $userId)
+                ->where('is_read','=',0)
+                ->orderBy('sent', 'desc')
+                ->select('mail.*', 'users.name')
+                ->get();
+
             return response()->json([
                 'mail' => $mail,
                 'id' => $userId,
