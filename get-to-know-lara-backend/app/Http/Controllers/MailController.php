@@ -15,7 +15,13 @@ class MailController extends Controller
     {
         try {
             $userId = auth()->user()->id;
-            $mail = DB::table("mail")->where('id_user_to', $userId)->where('is_read','=',0)->orderBy('sent', 'desc')->get();
+            $mail = DB::table("mail")
+                ->join('users', 'mail.id_user_from', '=', 'users.id')
+                ->where('id_user_to', $userId)
+                ->where('is_read','=',0)
+                ->orderBy('sent', 'desc')
+                ->select('mail.*', 'users.name')
+                ->get();
 //            $mail = Mail::where('id_user_to', $userId)->where('is_read','=',0)->orderBy('sent', 'desc')->get();
             return response()->json([
                 'mail' => $mail,
@@ -61,11 +67,18 @@ class MailController extends Controller
 
     function saveNewEmail(Request $request)
     {
-        $userId = auth()->user()->id;
-        DB::table('mail')->insert([  "subject" => $request->get('subject'),  "message" => $request->get('message'), "id_user_from" => $userId, "id_user_to" => $request->get('userId')]);
-        return response()->json([
-            'status_code' => 200,
-            'message' => 'User created successfully'
-        ]);
+        try{
+            $userId = auth()->user()->id;
+            Mail::insert([  "subject" => $request->get('subject'),  "message" => $request->get('message'), "id_user_from" => $userId, "id_user_to" => $request->get('userId')]);
+            return response()->json([
+                'status_code' => 200,
+                'message' => 'Sent new email'
+            ]);
+        }
+        catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['message' => 'something went wrong'], 400);
+        }
+
     }
 }
