@@ -35,7 +35,7 @@ function Inbox() {
 
 
     let result;
-    const fetchUser = async () => {
+    const fetchUserInboxMails = async () => {
         await fetch('http://localhost/get-to-know-lara/get-to-know-lara-backend/public/api/mail/inbox', {
             method : 'GET',
             headers : {
@@ -57,7 +57,7 @@ function Inbox() {
     }
 
     useEffect(() => {
-        fetchUser();
+      fetchUserInboxMails();
         if (localStorage.getItem("mail")){
           setMails(JSON.parse(localStorage.getItem("mail")))
 
@@ -78,7 +78,13 @@ function Inbox() {
          </TableRow>
        </TableHead>
        <TableBody>
-         {Object.keys(mails).map(key => (
+         {Object.keys(mails).length == 0 ?
+          <>
+         There no Email 
+         </>
+         :
+        
+         Object.keys(mails).map(key => (
          
            <TableRow key={mails[key].subject}>
              <TableCell component="th" scope="row">
