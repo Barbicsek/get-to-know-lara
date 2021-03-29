@@ -24,6 +24,9 @@ export default function MenuAppBar() {
           {
             sessionStorage.getItem('token') ?
             <>
+              <Link to="/mail/inbox">Inbox</Link>
+              &nbsp;
+              &nbsp;
               <Link to="/mail/sent">Sent Mails</Link>
               &nbsp;
               &nbsp;
